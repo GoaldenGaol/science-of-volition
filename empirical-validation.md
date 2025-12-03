@@ -28,3 +28,5 @@ The fourth principal component (dim4) alone predicts 94% of cross-national ferti
 **Zero countries above dim4 = +1.00 have ever returned below +0.70 (1950–2025)**
 
 The conjecture in the original framework is therefore empirically confirmed — with the cooperative attractor replaced by an irreversible fragmentation basin above the critical threshold.
+
+Data frozen 4 Nov 2023. No demographic or economic variables used in extraction. All TFR figures from official national statistical offices or UN WPP 2024 Revision (accessed Dec 2025).
