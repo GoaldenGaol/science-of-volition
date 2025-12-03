@@ -7,7 +7,7 @@ License: CC-BY-4.0 | 3 December 2025
 ## Core Documents
 
 - **[CORE-FRAMEWORK.md](CORE-FRAMEWORK.md)** ← complete packet (7-D latent, dim4 thresholds, country scores, axioms, notation, invariants, forecasts)
-- [docs/EMPIRICAL-VALIDATION.md](docs/EMPIRICAL-VALIDATION.md) ← original validation file (kept for history)
+- [docs/empirical-validation.md](docs/empirical-validation.md) ← original validation file (kept for history)
 
 ## dim4 Quick Reference (the unified scalar)
 
