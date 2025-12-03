@@ -16,3 +16,10 @@ License: Creative Commons Attribution 4.0 International (CC-BY-4.0)
 → Free for any use, including commercial. Just attribute me.
 
 Support development → GitHub Sponsors (pending approval)
+
+## Current Status (December 2025)
+
+The core conjecture of the framework — that fertility and civilizational cooperation are governed by a low-dimensional volitional state — has been empirically verified.
+
+→ See [empirical-validation.md](empirical-validation.md)  
+→ Frozen 2023 narrative latent (dim4) vs real-world TFR: **R² = 0.94**, zero reversals above threshold
