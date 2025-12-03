@@ -9,6 +9,10 @@ License: CC-BY-4.0 | 3 December 2025
 - **[CORE-FRAMEWORK.md](CORE-FRAMEWORK.md)** ← complete packet (7-D latent, dim4 thresholds, country scores, axioms, notation, invariants, forecasts)
 - [docs/empirical-validation.md](docs/empirical-validation.md) ← original validation file (kept for history)
 
+### Data
+
+- `data/dim4_frozen_2023.csv` — 2023 refrozen dim4 values (country-level snapshot with matching TFR).
+
 ## dim4 Quick Reference (the unified scalar)
 
 | Threshold   | Meaning                                               | Reversals ever seen |
