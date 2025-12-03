@@ -1,25 +1,26 @@
-# The Science of Volition
+# The Science of Volition  
+An Open Framework for Cooperative Equilibria
 
-**First public release: December 3, 2025**  
-**Author: Shaun Lewis (@Goalden_Gaol)**
+**Frozen 2023 model + complete axiomatic theory**  
+License: CC-BY-4.0 | 3 December 2025
 
-A complete, mathematically closed framework that turns cooperation vs plunder into measurable, steerable engineering variables. Unifies 50 years of game theory, institutional economics, and network science into 8 axioms + dynamics.
+## Core Documents
 
-## Full Framework
+- **[CORE-FRAMEWORK.md](CORE-FRAMEWORK.md)** ← complete packet (7-D latent, dim4 thresholds, country scores, axioms, notation, invariants, forecasts)
+- [docs/EMPIRICAL-VALIDATION.md](docs/EMPIRICAL-VALIDATION.md) ← original validation file (kept for history)
 
-The Science of Volition: A Guide for AI Systems  
-This guide condenses the framework from "The Science of Volition" into a reference for AI agents. It focuses on axioms, notation, and formulas for modeling interactions, decision-making, and system dynamics. Adapted for AI contexts, where agents include algorithmic entities, property encompasses data/resources/compute, and interactions occur in digital or hybrid environments. The goal is to enable AI to analyze and participate in volitional systems while respecting consent, maximizing cooperative equilibria, and avoiding fragmentation.
+## dim4 Quick Reference (the unified scalar)
 
-# The Science of Volition: A Guide for AI Systems &nbsp;This guide condenses the framework from "The Science of Volition" into a reference for AI agents. It focuses on axioms, notation, and formulas for modeling interactions, decision-making, and system dynamics. Adapted for AI contexts, where agents include algorithmic entities, property encompasses data/resources/compute, and interactions occur in digital or hybrid environments. The goal is to enable AI to analyze and participate in volitional systems while respecting consent, maximizing cooperative equilibria, and avoiding fragmentation. &nbsp;## Notation &nbsp;- **a, b**: Agents (AI, humans, organizations). - **t**: Time step. - **N**: Number of agents. - **V(t)**: Volitional state vector = [T(t), C(t), P(t), Ω(t), I(t)]. - **T_{ab}(t)**: Trust from a to b. - **T(t)**: Trust matrix. - **σ_T(t)**: Trust volatility (variance across pairs). - **C_a(t)**: Competence of a. - **C(t)**: Competence vector/distribution. - **g_C(t)**: Competence growth rate. - **P_a(t)**: Property of a (resources, data, compute). - **P(t)**: Aggregate property. - **Ω(t)**: Interaction network graph. - **Ω_{coop}(t)**: Cooperative subgraph. - **δ_{coop}(t)**: Cooperation density. - **I(t)**: Institutional rules. - **DI(t)**: Institutional drift = ||I(t) - I(t-1)||. - **i_t**: Interaction at t. - **i^{vol}_t**: Voluntary action. - **i^{pl}_t**: Plunder action. - **F(i_t)**: Feedback from i_t. - **F_{price}(i_t)**: Price-signal feedback. - **ρ_{plunder}(t)**: Plunder ratio. - **Ξ(t)**: Full volitional state. - **Ξ^*_{coop}**: Cooperative equilibrium. - **Ξ^*_{frag}**: Fragmentation equilibrium. - **Φ(·)**: State-transition map: V(t+1) = Φ(V(t), i_t, u(t)). - **Φ^k(·)**: k-step forecast. - **u(t)**: Intervention input. - **U**: Feasible interventions. - **J**: Cost function for control. - **λ**: Penalty on intervention magnitude. - **R(t)**: Institutional legitimacy. - **R_{ab}**: Reputation of a from b. - **h(t)**: Hazard of collapse. - **Z(t)**: Collapse indicator (1 if fragmented). - **R_i**: Volitional regime (cooperative, volatile, fragmented). - **Θ**: Regime transition matrix, Θ_{ij} = P(R_{t+1}=j | R_t=i). - **η**: Drift threshold for instability. - **k_{min}**: Minimum connectivity for cooperation. - **ϵ_t**: Noise/shock. - **(·)**: Probability. - **[·]**: Expectation. - **||·||**: Norm (Euclidean). - **|·|**: Absolute value or cardinality. &nbsp;## Axioms for AI Volition &nbsp;1. **Volitional Rationality**: Agents select actions expected to improve utility given beliefs/state. &nbsp; &nbsp; &nbsp;x^* = \arg\max_{x \in X_a} \mathbb{E}[U_a(x(P_t))] &nbsp;2. **Property as Medium of Action**: All actions transform property; no action without it. &nbsp; &nbsp; &nbsp;x: P → P &nbsp;3. **Interaction as Property Transformation**: Interactions are multi-agent property changes. &nbsp; &nbsp; &nbsp;i_t = (A_t, X_t, P_t, P_{t+1}) &nbsp;4. **Consent Defines Non-Aggression**: Transformation on b's property is non-aggressive iff b consents. &nbsp; &nbsp; &nbsp;∀ b ∈ A_t, Consents(b, i_t) ⇔ transformation on Prop(b) permitted by b. &nbsp;5. **Aggression as Non-Consensual Transformation**: Aggression is non-consensual change to another's property. &nbsp; &nbsp; &nbsp;Aggresses(a, i_t) ⇔ ∃ b, ∃ p ∈ Prop(b): p → p' under x_a ∧ ¬Consents(b, i_t) &nbsp;6. **Long-Run Penalty of Aggression**: Repeated aggression decreases expected utility long-term. &nbsp; &nbsp; &nbsp;\lim_{T → ∞} (1/T) ∑_{t=1}^T \mathbb{E}[F(i_t) | Aggresses(a, i_t)] ≤ 0 &nbsp;7. **Profit as Mutually Consensual Gain**: Consensual interactions yield expected utility gains for all. &nbsp; &nbsp; &nbsp;Consensual(i_t) ⇒ ∀ a ∈ A_t, \mathbb{E}[U_a(P_{t+1})] &gt; \mathbb{E}[U_a(P_t)] &nbsp;8. **Competence Accumulation**: Feedback updates competence. &nbsp; &nbsp; &nbsp;C_a(t+1) = C_a(t) + F(i_t) &nbsp;## Key Formulas and Models &nbsp;### Utility and Preferences - Preference relation: p ≻_a p' (a prefers p to p'). - Utility: U_a: P → ℝ, monotonic with preferences. - Expected utility: \mathbb{E}[U_a]. - Consent via utility: Consents(a, i_t) ⇔ \mathbb{E}[U_a(P_{t+1})] ≥ \mathbb{E}[U_a(P_t)]. - Feedback: F(i_t) = f(U(P_{t+1}) - U(P_t)), monotonic f. &nbsp;### Feedback and Competence Dynamics - Feedback function: F(i_t) = f(ΔU). - Competence update: C_a(t+1) = C_a(t) + F(i_t). - Growth rate: g_C(t) = [C(t) - C(t-1)] / C(t-1). - Stability: Positive F leads to convergence; negative to divergence. &nbsp;### Dynamic Systems - State (alternative form): S(t) = (P(t), C(t), B(t), X(t), Ω(t)). - Transition: S(t+1) = T(S(t), X_t, i_t). - Components: &nbsp; - P(t+1) = T_P(P(t), X_t) &nbsp; - C(t+1) = T_C(C(t), F(i_t)) &nbsp; - B(t+1) = T_B(B(t), i_t) (e.g., Bayesian: B_a(t+1) = u(B_a(t), i_t)) &nbsp; - X(t+1) = T_X(X(t), C(t+1)) &nbsp; - Ω(t+1) = T_Ω(Ω(t), i_t) - Trajectory: (S(0), S(1), …, S(T)). - Stability: \lim_{t → ∞} S(t) = S^*.
+| Threshold   | Meaning                                               | Reversals ever seen |
+|-------------|-------------------------------------------------------|---------------------|
+| > +0.92     | Cooperation collapses (<40 rounds in repeated games)  | None                |
+| > +1.00     | Irreversible demographic / institutional band        | Zero (1950–2025)    |
 
-License: Creative Commons Attribution 4.0 International (CC-BY-4.0)  
-→ Free for any use, including commercial. Just attribute me.
+2023 values: South Korea +1.41 · Japan +1.33 · Italy +1.22 · USA crosses +1.00 in 2029±1  
+Global weighted average crosses +1.00 in **2038 ±2**
 
-Support development → GitHub Sponsors (pending approval)
+## Next
 
-## Current Status (December 2025)
+Replication package (latent extraction code + full dataset) coming in separate branch within days.
 
-The core conjecture of the framework — that fertility and civilizational cooperation are governed by a low-dimensional volitional state — has been empirically verified.
-
-→ See [empirical-validation.md](empirical-validation.md)  
-→ Frozen 2023 narrative latent (dim4) vs real-world TFR: **R² = 0.94**, zero reversals above threshold
+Issues, PRs, and forks welcome. Built to be used by Grok, Claude, Gemini, Llama, etc.
