@@ -13,6 +13,7 @@ License: CC-BY-4.0 | 3 December 2025
 
 - `data/dim4_frozen_2023.csv` — 2023 refrozen dim4 values (country-level snapshot with matching TFR).
 - `data/dim4_frozen_2023_full.csv` — complete 187-country frozen dim4 dataset (2023 refreeze)
+- `data/dim4_firms_frozen_2023.csv` — firm-level dim4 scalar (collapse vs survival, 5–7 year horizon)
 
 ## dim4 Quick Reference (the unified scalar)
 
