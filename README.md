@@ -1,6 +1,9 @@
 # The Science of Volition  
 An Open Framework for Cooperative Equilibria
 
+- 📊 [Unified Theory Diagram (dim4 Systems Architecture)](UNIFIED-THEORY.md)
+
+
 **Frozen 2023 model + complete axiomatic theory**  
 License: CC-BY-4.0 | 3 December 2025
 
