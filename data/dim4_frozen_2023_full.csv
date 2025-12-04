@@ -1,0 +1,196 @@
+country,year,dim4,tfr_future
+Afghanistan,2023,0.82,3.45
+Albania,2023,1.05,1.45
+Algeria,2023,0.78,2.31
+Andorra,2023,0.95,1.20
+Angola,2023,0.69,4.12
+Antigua and Barbuda,2023,0.85,1.68
+Argentina,2023,0.94,1.55
+Armenia,2023,1.12,1.35
+Australia,2023,0.89,1.63
+Austria,2023,0.96,1.48
+Azerbaijan,2023,1.01,1.58
+Bahamas,2023,0.88,1.72
+Bahrain,2023,0.81,1.85
+Bangladesh,2023,0.71,2.05
+Barbados,2023,0.93,1.52
+Belarus,2023,1.15,1.28
+Belgium,2023,0.98,1.55
+Belize,2023,0.84,1.95
+Benin,2023,0.65,4.28
+Bhutan,2023,0.75,1.92
+Bolivia,2023,0.79,2.18
+Bosnia and Herzegovina,2023,1.09,1.26
+Botswana,2023,0.87,2.42
+Brazil,2023,0.87,1.66
+Brunei Darussalam,2023,0.80,1.78
+Bulgaria,2023,1.12,1.41
+Burkina Faso,2023,0.62,4.52
+Burundi,2023,0.58,5.12
+Cabo Verde,2023,0.83,1.92
+Cambodia,2023,0.72,2.22
+Cameroon,2023,0.68,3.98
+Canada,2023,0.91,1.50
+Central African Republic,2023,0.60,4.68
+Chad,2023,0.61,5.32
+Chile,2023,0.88,1.59
+China,2023,1.19,1.09
+Colombia,2023,0.85,1.71
+Comoros,2023,0.70,3.45
+Congo,2023,0.67,4.05
+Costa Rica,2023,0.90,1.48
+Côte d'Ivoire,2023,0.66,3.85
+Croatia,2023,1.08,1.38
+Cuba,2023,0.92,1.45
+Cyprus,2023,0.97,1.38
+Czechia,2023,1.02,1.52
+Democratic People's Republic of Korea,2023,1.08,1.82
+Democratic Republic of the Congo,2023,0.59,5.78
+Denmark,2023,0.93,1.67
+Djibouti,2023,0.74,2.65
+Dominica,2023,0.86,1.75
+Dominican Republic,2023,0.82,1.92
+Ecuador,2023,0.81,1.78
+Egypt,2023,0.76,2.93
+El Salvador,2023,0.84,1.68
+Equatorial Guinea,2023,0.71,3.92
+Eritrea,2023,0.64,4.25
+Estonia,2023,1.05,1.41
+Eswatini,2023,0.77,2.58
+Ethiopia,2023,0.63,3.68
+Fiji,2023,0.78,2.35
+Finland,2023,0.97,1.41
+France,2023,0.90,1.68
+Gabon,2023,0.73,3.15
+Gambia,2023,0.69,4.18
+Georgia,2023,1.10,1.32
+Germany,2023,0.99,1.47
+Ghana,2023,0.70,3.28
+Greece,2023,1.14,1.23
+Grenada,2023,0.87,1.65
+Guatemala,2023,0.76,2.45
+Guinea,2023,0.65,4.38
+Guinea-Bissau,2023,0.67,4.02
+Guyana,2023,0.80,2.12
+Haiti,2023,0.72,2.78
+Holy See,2023,1.20,1.05
+Honduras,2023,0.78,2.18
+Hungary,2023,1.07,1.52
+Iceland,2023,0.94,1.62
+India,2023,0.74,2.03
+Indonesia,2023,0.73,2.18
+Iran,2023,1.21,1.71
+Iraq,2023,0.75,2.68
+Ireland,2023,0.92,1.63
+Israel,2023,0.81,2.90
+Italy,2023,1.18,1.20
+Jamaica,2023,0.83,1.78
+Japan,2023,1.31,1.26
+Jordan,2023,0.79,2.35
+Kazakhstan,2023,1.00,2.05
+Kenya,2023,0.68,2.85
+Kiribati,2023,0.77,2.95
+Kuwait,2023,0.82,1.95
+Kyrgyzstan,2023,0.98,2.42
+Lao People's Democratic Republic,2023,0.76,2.28
+Latvia,2023,1.11,1.37
+Lebanon,2023,0.85,1.85
+Lesotho,2023,0.75,2.48
+Liberia,2023,0.66,4.15
+Libya,2023,0.77,2.52
+Liechtenstein,2023,0.96,1.42
+Lithuania,2023,1.09,1.41
+Luxembourg,2023,0.94,1.55
+Madagascar,2023,0.64,3.95
+Malawi,2023,0.62,3.82
+Malaysia,2023,0.79,1.78
+Maldives,2023,0.81,1.95
+Mali,2023,0.61,5.02
+Malta,2023,1.03,1.25
+Marshall Islands,2023,0.89,2.25
+Mauritania,2023,0.70,4.05
+Mauritius,2023,0.91,1.35
+Mexico,2023,0.86,1.82
+Micronesia,2023,0.84,2.45
+Moldova,2023,1.06,1.28
+Monaco,2023,1.00,1.30
+Mongolia,2023,0.88,1.92
+Montenegro,2023,1.04,1.48
+Morocco,2023,0.80,2.12
+Mozambique,2023,0.63,4.25
+Myanmar,2023,0.74,1.98
+Namibia,2023,0.79,2.68
+Nauru,2023,0.86,2.35
+Nepal,2023,0.72,1.95
+Netherlands,2023,0.95,1.49
+New Zealand,2023,0.90,1.56
+Nicaragua,2023,0.81,1.85
+Niger,2023,0.55,6.48
+Nigeria,2023,0.67,4.18
+North Macedonia,2023,1.07,1.38
+Norway,2023,0.91,1.41
+Oman,2023,0.83,1.92
+Pakistan,2023,0.77,3.36
+Palau,2023,0.88,1.75
+Palestine,2023,0.78,2.85
+Panama,2023,0.84,1.78
+Papua New Guinea,2023,0.69,3.25
+Paraguay,2023,0.80,2.15
+Peru,2023,0.82,1.92
+Philippines,2023,0.80,2.53
+Poland,2023,1.03,1.33
+Portugal,2023,1.10,1.29
+Qatar,2023,0.79,1.85
+Republic of Korea,2023,1.41,0.72
+Romania,2023,1.06,1.53
+Russian Federation,2023,1.01,1.46
+Rwanda,2023,0.66,3.45
+Saint Kitts and Nevis,2023,0.87,1.65
+Saint Lucia,2023,0.85,1.72
+Saint Vincent and the Grenadines,2023,0.86,1.70
+Samoa,2023,0.82,3.18
+San Marino,2023,0.98,1.28
+Sao Tome and Principe,2023,0.74,3.05
+Saudi Arabia,2023,0.82,2.43
+Senegal,2023,0.68,3.95
+Serbia,2023,1.13,1.46
+Seychelles,2023,0.90,1.85
+Sierra Leone,2023,0.64,4.35
+Singapore,2023,1.17,0.97
+Slovakia,2023,1.04,1.52
+Slovenia,2023,1.09,1.35
+Solomon Islands,2023,0.71,3.45
+Somalia,2023,0.59,5.45
+South Africa,2023,0.88,2.35
+South Sudan,2023,0.57,5.65
+Spain,2023,1.15,1.19
+Sri Lanka,2023,0.89,1.75
+Sudan,2023,0.65,4.55
+Suriname,2023,0.81,1.98
+Sweden,2023,0.94,1.66
+Switzerland,2023,0.96,1.45
+Syrian Arab Republic,2023,0.73,2.58
+Tajikistan,2023,0.94,2.65
+Tanzania,2023,0.66,3.85
+Thailand,2023,1.05,1.33
+Timor-Leste,2023,0.70,2.95
+Togo,2023,0.67,3.78
+Tonga,2023,0.78,2.45
+Trinidad and Tobago,2023,0.85,1.68
+Tunisia,2023,0.84,1.92
+Turkey,2023,0.89,1.51
+Turkmenistan,2023,0.97,2.18
+Tuvalu,2023,0.83,2.85
+Uganda,2023,0.62,4.65
+Ukraine,2023,1.08,1.16
+United Arab Emirates,2023,0.83,1.62
+United Kingdom of Great Britain and Northern Ireland,2023,0.92,1.56
+United States of America,2023,0.94,1.62
+Uruguay,2023,0.95,1.38
+Uzbekistan,2023,0.99,2.05
+Vanuatu,2023,0.76,2.95
+Venezuela,2023,0.86,1.75
+Viet Nam,2023,0.84,2.05
+Yemen,2023,0.69,3.45
+Zambia,2023,0.65,3.95
+Zimbabwe,2023,0.71,2.85
