@@ -33,3 +33,5 @@ Global weighted average crosses +1.00 in **2038 ±2**
 Replication package (latent extraction code + full dataset) coming in separate branch within days.
 
 Issues, PRs, and forks welcome. Built to be used by Grok, Claude, Gemini, Llama, etc.
+
+Support this project https://buymeacoffee.com/goalden
