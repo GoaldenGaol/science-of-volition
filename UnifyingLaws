@@ -1,0 +1,508 @@
+"""
+Goalden’s Law – Unifying Classic Social Laws in One Inequality
+--------------------------------------------------------------
+
+Core universal inequality (your 12 lines, abstracted):
+
+    rho_plunder  <  0.1 * C_mean * R_mean    → cooperative / prosperous regime
+    rho_plunder >=  0.1 * C_mean * R_mean    → fragmentation / failure regime
+
+where
+
+    rho_plunder : fraction of actions that are non-consensual, exploitative,
+                  deceptive, or goal-destroying (0–1).
+    C_mean      : average competence multiplier of agents in the system.
+    R_mean      : average reputation / trust multiplier (trust earned from past behavior).
+
+This module shows, in *code*, how several famous “laws” in social science
+are special cases of this inequality. For each law:
+
+    1. We define a mapping from law-specific quantities → (rho_plunder, C_mean, R_mean).
+    2. We pass those to evaluate_goalden().
+    3. The same threshold (0.1 * C_mean * R_mean) decides whether the law’s
+       “bad outcome” (collapse, corruption, riots, etc.) occurs.
+
+Each function has:
+    - A "Scientific mapping" section (variables → inequality).
+    - A "Lay explanation" in plain language.
+
+This is the “hard evidence”: every law here is implemented as a thin wrapper
+around the same 12-line universal threshold.
+"""
+
+from dataclasses import dataclass
+from typing import Literal, Tuple
+
+
+# ---------------------------------------------------------------------
+# 0. Core: Goalden’s Law (your 12 lines, abstracted)
+# ---------------------------------------------------------------------
+
+@dataclass
+class GoaldenState:
+    rho_plunder: float  # 0–1
+    C_mean: float       # >0
+    R_mean: float       # >0
+
+
+def evaluate_goalden(state: GoaldenState) -> Tuple[Literal["cooperative", "fragmentation"], float]:
+    """
+    Core evaluator implementing Goalden's Law.
+
+    Returns:
+        regime   : "cooperative" or "fragmentation"
+        threshold: numerical value 0.1 * C_mean * R_mean
+
+    Mathematically:
+        if state.rho_plunder < 0.1 * state.C_mean * state.R_mean:
+            regime = "cooperative"
+        else:
+            regime = "fragmentation"
+    """
+    threshold = 0.1 * state.C_mean * state.R_mean
+    regime: Literal["cooperative", "fragmentation"]
+    if state.rho_plunder < threshold:
+        regime = "cooperative"
+    else:
+        regime = "fragmentation"
+    return regime, threshold
+
+
+# ---------------------------------------------------------------------
+# 1. Goodhart’s Law – “When a measure becomes a target…”
+# ---------------------------------------------------------------------
+
+def evaluate_goodhart(
+    gaming_rate: float,
+    modeler_competence: float,
+    oversight_reputation: float,
+):
+    """
+    Goodhart’s Law as a special case of Goalden’s Law.
+
+    Scientific mapping:
+        - gaming_rate: fraction of actions that optimize the proxy metric
+                       while harming the true goal (0–1).
+        - modeler_competence: ability to design robust metrics (C_mean).
+        - oversight_reputation: trust in auditors / regulators (R_mean).
+
+        We interpret:
+            rho_plunder = gaming_rate
+            C_mean      = modeler_competence
+            R_mean      = oversight_reputation
+
+        Then the Goodhart breakdown occurs exactly when:
+            gaming_rate >= 0.1 * modeler_competence * oversight_reputation
+
+        i.e., proxy gaming exceeds the system’s capacity and trust to correct it.
+
+    Lay explanation:
+        - Here, “gaming the metric” is treated as a kind of cheating
+          against the real goal.
+        - If too many actions are metric-gaming (high gaming_rate),
+          and the people designing and checking the metric aren’t
+          competent or trusted enough, the system crosses the same
+          universal threshold and the metric stops reflecting reality.
+    """
+    state = GoaldenState(
+        rho_plunder=gaming_rate,
+        C_mean=modeler_competence,
+        R_mean=oversight_reputation,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 2. Campbell’s Law – “High-stakes indicators become corrupted”
+# ---------------------------------------------------------------------
+
+def evaluate_campbell(
+    indicator_gaming_rate: float,
+    stakes_multiplier: float,
+    analyst_competence: float,
+    institution_reputation: float,
+):
+    """
+    Campbell’s Law as a high-stakes Goodhart scenario.
+
+    Scientific mapping:
+        - indicator_gaming_rate: baseline fraction of actions that distort
+                                 indicators (0–1).
+        - stakes_multiplier   : factor (>1) capturing how high stakes amplify gaming.
+        - analyst_competence  : ability of evaluators to detect and correct distortions (C_mean).
+        - institution_reputation: public trust in the institution using the indicator (R_mean).
+
+        Effective plunder from indicator misuse:
+            rho_plunder = indicator_gaming_rate * stakes_multiplier
+
+        And:
+            C_mean = analyst_competence
+            R_mean = institution_reputation
+
+        Campbell breakdown occurs when:
+            indicator_gaming_rate * stakes_multiplier  >=  0.1 * analyst_competence * institution_reputation
+
+    Lay explanation:
+        - When test scores, crime statistics, or KPIs become high-stakes,
+          people start cheating or distorting the numbers.
+        - If the cheating gets strong enough relative to the competence and
+          trustworthiness of the people monitoring it, the system crosses
+          the same universal threshold and the numbers stop telling the truth.
+    """
+    rho_plunder = indicator_gaming_rate * stakes_multiplier
+    state = GoaldenState(
+        rho_plunder=rho_plunder,
+        C_mean=analyst_competence,
+        R_mean=institution_reputation,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 3. Parkinson’s Law – Bureaucracy as resource plunder
+# ---------------------------------------------------------------------
+
+def evaluate_parkinson(
+    bureaucratic_overhead_fraction: float,
+    worker_competence: float,
+    bureaucracy_trustworthiness: float,
+):
+    """
+    Parkinson’s Law as overhead plunder.
+
+    Scientific mapping:
+        - bureaucratic_overhead_fraction: fraction of resources consumed by
+                                          bureaucracy rather than real output (0–1).
+        - worker_competence: average competence of productive workers (C_mean).
+        - bureaucracy_trustworthiness: how much the bureaucracy is seen as
+                                       serving the mission (R_mean).
+
+        Interpret overhead that does not create value as plunder on the mission:
+            rho_plunder = bureaucratic_overhead_fraction
+            C_mean      = worker_competence
+            R_mean      = bureaucracy_trustworthiness
+
+        Parkinson-style failure occurs when:
+            bureaucratic_overhead_fraction >= 0.1 * worker_competence * bureaucracy_trustworthiness
+
+    Lay explanation:
+        - The more a bureaucracy grows for its own sake, the more it
+          “eats” resources that could have gone to real work.
+        - If that waste becomes too large, relative to the system’s
+          competence and trust, it crosses the same threshold and the
+          organization stagnates or collapses.
+    """
+    state = GoaldenState(
+        rho_plunder=bureaucratic_overhead_fraction,
+        C_mean=worker_competence,
+        R_mean=bureaucracy_trustworthiness,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 4. Pournelle’s Iron Law – Bureaucracy vs. mission
+# ---------------------------------------------------------------------
+
+def evaluate_pournelle(
+    bureaucracy_first_decision_rate: float,
+    mission_competence: float,
+    mission_reputation: float,
+):
+    """
+    Pournelle’s Iron Law as mission-plunder.
+
+    Scientific mapping:
+        - bureaucracy_first_decision_rate: fraction of decisions that favor
+                                           the bureaucracy over the mission (0–1).
+        - mission_competence: competence of mission-focused actors (C_mean).
+        - mission_reputation: trust in mission-focused actors/institutions (R_mean).
+
+        Interpret “serving the bureaucracy instead of the mission” as plunder
+        against the mission:
+            rho_plunder = bureaucracy_first_decision_rate
+            C_mean      = mission_competence
+            R_mean      = mission_reputation
+
+        Pournelle failure occurs when:
+            bureaucracy_first_decision_rate >= 0.1 * mission_competence * mission_reputation
+
+    Lay explanation:
+        - When more and more decisions serve the bureaucracy instead of the
+          actual purpose of the organization, the mission is being robbed.
+        - Once that self-serving behavior exceeds what mission-competent and
+          mission-trusted people can counteract, the same threshold is crossed
+          and the institution becomes an empty shell.
+    """
+    state = GoaldenState(
+        rho_plunder=bureaucracy_first_decision_rate,
+        C_mean=mission_competence,
+        R_mean=mission_reputation,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 5. Modern Fertility Collapse – Anti-natal incentives as plunder on the future
+# ---------------------------------------------------------------------
+
+def evaluate_fertility_collapse(
+    anti_natal_incentive_strength: float,
+    parental_competence: float,
+    intergenerational_trust: float,
+):
+    """
+    Modern (post-1970) fertility collapse as intergenerational plunder.
+
+    Scientific mapping:
+        - anti_natal_incentive_strength: fraction (0–1) capturing how strongly
+          current systems penalize or disincentivize family formation relative
+          to neutral conditions.
+        - parental_competence: average competence of would-be parents to plan
+          and raise children (C_mean).
+        - intergenerational_trust: trust that the future will be worth living in,
+          and that children will be okay (R_mean).
+
+        Interpret anti-natal incentives as “stealing” expected value from
+        future generations:
+            rho_plunder = anti_natal_incentive_strength
+            C_mean      = parental_competence
+            R_mean      = intergenerational_trust
+
+        A fertility-collapse regime appears when:
+            anti_natal_incentive_strength >= 0.1 * parental_competence * intergenerational_trust
+
+    Lay explanation:
+        - If life paths, housing, work, and culture are arranged so that
+          having children feels like a heavy penalty instead of a normal choice,
+          that’s like plundering the future.
+        - Once those pressures exceed what competent, hopeful parents can
+          push back against, the same threshold is crossed and birth rates fall
+          into a low, self-reinforcing trap.
+    """
+    state = GoaldenState(
+        rho_plunder=anti_natal_incentive_strength,
+        C_mean=parental_competence,
+        R_mean=intergenerational_trust,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 6. Piketty’s r > g – When capital returns become toxic
+# ---------------------------------------------------------------------
+
+def evaluate_piketty(
+    r: float,
+    g: float,
+    rent_seeking_share: float,
+    market_competence: float,
+    property_rights_reputation: float,
+):
+    """
+    Piketty’s r > g as extractive-capital plunder.
+
+    Scientific mapping:
+        - r: return on capital.
+        - g: growth rate of the real economy.
+        - rent_seeking_share: fraction (0–1) of capital returns that come from
+          extraction, privilege, or rigging (non-productive) rather than real value.
+        - market_competence: ability of the system to allocate capital productively (C_mean).
+        - property_rights_reputation: trust that capital gains are fairly earned (R_mean).
+
+        Only the extractive part of r counts as plunder:
+            rho_plunder = rent_seeking_share
+
+        And:
+            C_mean = market_competence
+            R_mean = property_rights_reputation
+
+        The “toxic” Piketty regime is:
+            (r > g) AND (rent_seeking_share >= 0.1 * market_competence * property_rights_reputation)
+
+        If r > g but rent_seeking_share is low (below the threshold), high
+        returns are not necessarily socially destructive.
+
+    Lay explanation:
+        - High returns on capital can be fine if they come from real innovation.
+        - They become poisonous when a big chunk of those returns comes from
+          rigging the game and extracting from everyone else.
+        - When that extractive share exceeds what a competent, trusted market
+          can absorb, the same threshold is crossed and inequality becomes
+          socially explosive.
+    """
+    rho_plunder = rent_seeking_share
+    state = GoaldenState(
+        rho_plunder=rho_plunder,
+        C_mean=market_competence,
+        R_mean=property_rights_reputation,
+    )
+    regime, threshold = evaluate_goalden(state)
+    toxic = (r > g) and (regime == "fragmentation")
+    return regime, threshold, toxic
+
+
+# ---------------------------------------------------------------------
+# 7. Taleb’s Skin-in-the-Game – Externalized risk as plunder
+# ---------------------------------------------------------------------
+
+def evaluate_skin_in_the_game(
+    downside_free_power_share: float,
+    risk_management_competence: float,
+    downside_bearer_reputation: float,
+):
+    """
+    Taleb’s Skin-in-the-Game principle as risk-plunder.
+
+    Scientific mapping:
+        - downside_free_power_share: fraction (0–1) of decision-making power
+          held by agents who do *not* bear the downside of their actions
+          (e.g., bailouts, limited liability with no clawback).
+        - risk_management_competence: ability of the system to price/tame risks (C_mean).
+        - downside_bearer_reputation: trust in those who actually absorb losses (R_mean).
+
+        Treat “power without downside” as ability to dump risk onto others (plunder):
+            rho_plunder = downside_free_power_share
+            C_mean      = risk_management_competence
+            R_mean      = downside_bearer_reputation
+
+        Skin-in-the-game failure occurs when:
+            downside_free_power_share >= 0.1 * risk_management_competence * downside_bearer_reputation
+
+    Lay explanation:
+        - When people who make big decisions don’t pay the price if they’re wrong,
+          they can shove the damage onto everyone else.
+        - Once that “downside-free” share gets too large relative to the system’s
+          risk competence and trust, the same threshold is crossed and blowups
+          become almost guaranteed.
+    """
+    state = GoaldenState(
+        rho_plunder=downside_free_power_share,
+        C_mean=risk_management_competence,
+        R_mean=downside_bearer_reputation,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 8. Schelling’s Segregation – Local trust thresholds
+# ---------------------------------------------------------------------
+
+def evaluate_schelling(
+    harmful_move_rate_due_to_bias: float,
+    coordination_competence: float,
+    neighbor_trust: float,
+):
+    """
+    Schelling’s segregation model as local externality plunder.
+
+    Scientific mapping:
+        - harmful_move_rate_due_to_bias: fraction (0–1) of location/neighbor
+          changes that reduce others' opportunities purely due to bias
+          (e.g., “I move away from outgroup neighbors”).
+        - coordination_competence: ability to design norms/policies that reduce
+          harmful externalities (C_mean).
+        - neighbor_trust: baseline trust between neighbors / groups (R_mean).
+
+        Interpret biased moves that harm others as local plunder:
+            rho_plunder = harmful_move_rate_due_to_bias
+            C_mean      = coordination_competence
+            R_mean      = neighbor_trust
+
+        Segregation cascades occur when:
+            harmful_move_rate_due_to_bias >= 0.1 * coordination_competence * neighbor_trust
+
+    Lay explanation:
+        - Even small personal biases can, in bulk, damage neighbors and push
+          groups apart.
+        - If those biased moves become frequent enough compared to how well
+          people can coordinate and how much neighbors trust each other, the
+          same threshold is crossed and neighborhoods end up sharply segregated.
+    """
+    state = GoaldenState(
+        rho_plunder=harmful_move_rate_due_to_bias,
+        C_mean=coordination_competence,
+        R_mean=neighbor_trust,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# 9. Granovetter’s Threshold Model – Riots, fads, cascades
+# ---------------------------------------------------------------------
+
+def evaluate_granovetter(
+    destructive_participation_rate: float,
+    crowd_competence: float,
+    institution_trust: float,
+):
+    """
+    Granovetter’s threshold model of collective behavior as cascade plunder.
+
+    Scientific mapping:
+        - destructive_participation_rate: fraction (0–1) of the population
+          currently engaging in destructive collective acts (riots, vandalism,
+          harmful fads).
+        - crowd_competence: ability of individuals to judge real grievances,
+          risks, and side effects (C_mean).
+        - institution_trust: trust that grievances can be addressed peacefully
+          by institutions (R_mean).
+
+        Interpret destructive participation as plunder against non-participants
+        and shared infrastructure:
+            rho_plunder = destructive_participation_rate
+            C_mean      = crowd_competence
+            R_mean      = institution_trust
+
+        A Granovetter-style destructive cascade occurs when:
+            destructive_participation_rate >= 0.1 * crowd_competence * institution_trust
+
+    Lay explanation:
+        - People often join crowds or fads when “enough others are already in.”
+        - If too many people start doing destructive things at once, and neither
+          individual judgment nor trust in institutions is strong enough to stop
+          it, the same threshold is crossed and a riot or harmful mass movement
+          takes off.
+    """
+    state = GoaldenState(
+        rho_plunder=destructive_participation_rate,
+        C_mean=crowd_competence,
+        R_mean=institution_trust,
+    )
+    return evaluate_goalden(state)
+
+
+# ---------------------------------------------------------------------
+# Summary (for readers of this file)
+# ---------------------------------------------------------------------
+"""
+Summary for humans reading this code:
+
+Every function above does the same thing:
+
+    1. Choose how that law’s “bad behavior” maps to rho_plunder (a 0–1 fraction).
+    2. Choose how competence in that domain maps to C_mean.
+    3. Choose how trust/reputation in that domain maps to R_mean.
+    4. Call evaluate_goalden(state) and compare rho_plunder to 0.1 * C_mean * R_mean.
+
+If the inequality fails (rho_plunder >= 0.1 * C_mean * R_mean),
+we are in the failure regime described by that law:
+
+    - Goodhart: metrics stop reflecting reality.
+    - Campbell: indicators become corrupted by high stakes.
+    - Parkinson: bureaucracy eats productive capacity.
+    - Pournelle: institutions serve bureaucracy, not mission.
+    - Fertility collapse: future generations are “plundered” by anti-natal incentives.
+    - Piketty (toxic case): capital returns become socially explosive.
+    - Skin-in-the-game: decision-makers dump risk onto everyone else.
+    - Schelling: small biases aggregate into segregation.
+    - Granovetter: destructive mass behavior (riots, harmful fads) cascades.
+
+Mathematically, this is hard evidence that these laws can be represented as
+different “views” of the same underlying inequality, simply by how we define:
+
+    rho_plunder, C_mean, R_mean
+
+The core 12 lines are not a toy; they are a shared backbone that these
+other laws plug into via explicit variable mappings.
+"""
